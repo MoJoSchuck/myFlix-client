@@ -1,4 +1,6 @@
-.my-flix {
-  color: #4682b4;
+.movie-view img {
+  max-width: 100%;
+  height: auto;
+  max-height: 400px;
 }
 /*# sourceMappingURL=index.2212206d.css.map */
