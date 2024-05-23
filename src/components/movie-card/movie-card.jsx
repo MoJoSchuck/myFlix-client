@@ -21,7 +21,7 @@ MovieCard.propTypes = {
         }).isRequired,
         Genre: PropTypes.shape({
             Name: PropTypes.string.isRequired
-        })
+        }).isRequired,
     }).isRequired,
     onMovieClick: PropTypes.func.isRequired
 };
