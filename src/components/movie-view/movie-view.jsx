@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import Button from "react-bootstrap/Button";
 
 export const MovieView = ({ movie, onBackClick }) => {
     return (
@@ -26,7 +27,7 @@ export const MovieView = ({ movie, onBackClick }) => {
                 <span>Description: </span>
                 <span>{movie.Description}</span>
             </div>
-            <button onClick={onBackClick}>Back</button>
+            <Button onClick={onBackClick}>Back</Button>
         </div>
     );
 };
