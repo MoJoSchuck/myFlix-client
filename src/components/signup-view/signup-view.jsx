@@ -1,4 +1,7 @@
 import { useState } from "react";
+import PropTypes from 'prop-types';
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 
 export const SignupView = () => {
     const [username, setUsername] = useState("");
@@ -33,45 +36,52 @@ export const SignupView = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <label>
-                Username:
-                <input
+        <Form className="signup-view" onSubmit={handleSubmit}>
+            <Form.Group controlId="formUsername">
+                <Form.Label>Username:</Form.Label>
+                <Form.Control
                     type="text"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                     required
                     minLength="3"
                 />
-            </label>
-            <label>
-                Password:
-                <input
+            </Form.Group>
+
+            <Form.Group controlId="formPassword">
+                <Form.Label>Password:</Form.Label>
+                <Form.Control
                     type="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
                 />
-            </label>
-            <label>
-                Email:
-                <input
+            </Form.Group>
+
+            <Form.Group>
+                <Form.Label>Email:</Form.Label>
+                <Form.Control
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
                 />
-            </label>
-            <label>
-                Birthday:
-                <input
+            </Form.Group>
+
+            <Form.Group>
+                <Form.Label>Birthday:</Form.Label>
+                <Form.Control
                     type="date"
                     value={birthday}
                     onChange={(e) => setBirthday(e.target.value)}
                     required
                 />
-            </label>
-            <button type="submit">Submit</button>
-        </form>
+            </Form.Group>
+            <Button variant="primary" type="submit">Signup</Button>
+        </Form>
     );
+};
+
+SignupView.propTypes = {
+    onLoggedIn: PropTypes.func.isRequired,
 };

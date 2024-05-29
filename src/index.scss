@@ -1,5 +1,52 @@
-.movie-view img {
-    max-width: 100%;
+$dark-color: rgb(31, 41, 51);
+$lighter-color: rgb(43, 57, 72); // Eine hellere Version
+
+body {
+    background-color: $lighter-color;
+    color: white;
+}
+
+.movie-card {
+    background-color: $dark-color;
+    color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+
+    &:hover {
+        transform: scale(1.05);
+    }
+}
+
+.movie-view {
+    background-color: $dark-color;
+    color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+img {
+    width: 100%;
     height: auto;
-    max-height: 400px; 
+    object-fit: cover;
+    aspect-ratio: 16 / 9
+}
+
+.movie-card-container img {
+    height: 100%;
+    object-fit: cover; // oder object-fit: contain;
+}
+
+.carousel-item img {
+    width: 100%;
+    height: auto;
+    max-height: 500px;
+    padding: 20 0px;
+}
+
+.login-view,
+.signup-view {
+    .form-label {
+        color: white;
+    }
 }
