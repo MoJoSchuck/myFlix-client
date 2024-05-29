@@ -83,5 +83,5 @@ export const SignupView = () => {
 };
 
 SignupView.propTypes = {
-    onLoggedIn: PropTypes.func.isRequired,
+    onLoggedIn: PropTypes.func
 };
