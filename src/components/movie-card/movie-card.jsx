@@ -3,13 +3,15 @@ import { Button, Card } from "react-bootstrap";
 
 export const MovieCard = ({ movie, onMovieClick }) => {
     return (
-        <Card className='h-100' onClick={() => onMovieClick(movie)}>
-            <Card.Img variant="top" src={movie.ImagePath} />
+        <Card className=' movie-card h-100' onClick={() => onMovieClick(movie)}>
+            <div className="ratio ratio-16x9">
+                <Card.Img variant="top" src={movie.ImagePath} />
+            </div>
             <Card.Body>
                 <Card.Title>{movie.Title}</Card.Title>
                 <Card.Text>{movie.Director.Name}</Card.Text>
                 {/* space for more information about a movie */}
-                <Button variant="primary" onClick={() => onMovieClick(movie)}>Open</Button>
+                <Button variant="light" onClick={() => onMovieClick(movie)}>Open</Button>
             </Card.Body>
         </Card>
     );

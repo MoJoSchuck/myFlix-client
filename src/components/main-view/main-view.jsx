@@ -3,10 +3,10 @@ import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
+import { MovieCarousel } from "../carousel/carousel";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { Button } from "react-bootstrap";
-
+import { Button, Carousel } from "react-bootstrap";
 
 export const MainView = () => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
@@ -46,6 +46,9 @@ export const MainView = () => {
         }
     }, []);
 
+    const getSimilarMovies = (selectedMovie) => {
+        return movies.filter(movie => movie.Genre.Name === selectedMovie.Genre.Name && movie._id !== selectedMovie._id);
+    };
 
     if (!user) {
         return (
@@ -69,22 +72,22 @@ export const MainView = () => {
     if (selectedMovie) {
         return (
             <Row className="justify-content-md-center">
-                    <Col md={8}>
-                        <Button variant="light"
-                            onClick={() => {
-                                setUser(null);
-                                setToken(null);
-                                localStorage.clear();
-                            }}
-                        >
-                            Logout
-                        </Button>
-
-                        <MovieView
-                            movie={selectedMovie}
-                            onBackClick={() => setSelectedMovie(null)}
-                        />
-                    </Col>
+                <Col md={8}>
+                    <Button variant="light"
+                        onClick={() => {
+                            setUser(null);
+                            setToken(null);
+                            localStorage.clear();
+                        }}
+                    >
+                        Logout
+                    </Button>
+                    <MovieView
+                        movie={selectedMovie}
+                        onBackClick={() => setSelectedMovie(null)}
+                        similarMovies={getSimilarMovies(selectedMovie)}
+                    />
+                </Col>
             </Row>
         );
     }
@@ -117,9 +120,10 @@ export const MainView = () => {
             >
                 Logout
             </Button>
+            <MovieCarousel movies={movies} />
             <Row>
                 {movies.map((movie) => (
-                    <Col md={3} key={movie._id} className="mb-5">
+                    <Col xs={12} sm={6} md={4} lg={3} key={movie._id} className="movie-card-container mb-5">
                         <MovieCard
                             movie={movie}
                             onMovieClick={(newSelectedMovie) => {
