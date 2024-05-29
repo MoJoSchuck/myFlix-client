@@ -1,4 +1,5 @@
 import { useState } from "react";
+import PropTypes from 'prop-types';
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
@@ -79,4 +80,8 @@ export const SignupView = () => {
             <Button variant="primary" type="submit">Signup</Button>
         </Form>
     );
+};
+
+SignupView.propTypes = {
+    onLoggedIn: PropTypes.func.isRequired,
 };

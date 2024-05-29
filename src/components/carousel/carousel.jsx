@@ -1,5 +1,6 @@
 import React from 'react';
 import Carousel from 'react-bootstrap/Carousel';
+import PropTypes from 'prop-types';
 
 export const MovieCarousel = ({ movies }) => {
   return (
@@ -21,3 +22,13 @@ export const MovieCarousel = ({ movies }) => {
   );
 };
 
+MovieCarousel.propTypes = {
+    movies: PropTypes.arrayOf(
+      PropTypes.shape({
+        _id: PropTypes.string.isRequired,
+        Title: PropTypes.string.isRequired,
+        ImagePath: PropTypes.string.isRequired,
+        Description: PropTypes.string.isRequired,
+      })
+    ).isRequired,
+  };

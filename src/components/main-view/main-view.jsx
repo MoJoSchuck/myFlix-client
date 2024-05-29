@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import PropTypes from 'prop-types';
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view";
@@ -135,4 +136,8 @@ export const MainView = () => {
             </Row>
         </div>
     );
+};
+
+MainView.propTypes = {
+    onLoggedIn: PropTypes.func
 };
