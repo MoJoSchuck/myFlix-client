@@ -2,10 +2,12 @@ import { useState } from "react";
 import PropTypes from 'prop-types';
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import { useNavigate } from "react-router-dom";
 
 export const LoginView = ({ onLoggedIn }) => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const navigate = useNavigate();  // Initialize the useNavigate hook
 
     const handleSubmit = (event) => {
         // this prevents the default behavior of the form which is to reload the entire page
@@ -35,6 +37,7 @@ export const LoginView = ({ onLoggedIn }) => {
                     localStorage.setItem("user", JSON.stringify(data.user));
                     localStorage.setItem("token", data.token);
                     onLoggedIn(data.user, data.token);
+                    navigate("/");  // Navigate to the main view after login
                 } else {
                     alert("No such user");
                 }
