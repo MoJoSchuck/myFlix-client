@@ -77,6 +77,7 @@ export const SignupView = () => {
                     required
                 />
             </Form.Group>
+            <br></br>
             <Button variant="primary" type="submit">Signup</Button>
         </Form>
     );
