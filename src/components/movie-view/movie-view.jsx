@@ -5,10 +5,9 @@ import Card from 'react-bootstrap/Card';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { MovieCard } from '../movie-card/movie-card';
-import { useParams } from "react-router";
-import { Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
-export const MovieView = ({ movies, findSimilarMovies, onFavorite }) => {
+export const MovieView = ({ movies, findSimilarMovies, onFavorite, isFavorite }) => {
     const { movieId } = useParams();
     const movie = movies.find((m) => m._id === movieId);
 
@@ -29,16 +28,22 @@ export const MovieView = ({ movies, findSimilarMovies, onFavorite }) => {
                         <strong>Description:</strong> {movie.Description}
                     </Card.Text>
                     <Link to={`/`}>
-                        <Button variant="light">Back</Button>
-                        <Button variant="outline-primary" onClick={() => onFavorite(movie)}>Favorite</Button>
+                        <Button variant="light" className="me-2">Back</Button>
                     </Link>
+                    <Button 
+                        variant="outline-primary" 
+                        onClick={() => onFavorite(movie)}
+                    >
+                        {isFavorite(movie._id) ? "Remove from Favorites" : "Favorite"}
+                    </Button>
                 </Card.Body>
             </Card>
             <h3 className="mt-5">Similar Movies</h3>
+            <hr></hr>
             <Row>
                 {similarMovies.map((similarMovie) => (
                     <Col xs={12} sm={6} md={4} lg={3} key={similarMovie._id} className="movie-card-container mb-5">
-                        <MovieCard movie={similarMovie} onFavorite={onFavorite} />
+                        <MovieCard movie={similarMovie} />
                     </Col>
                 ))}
             </Row>
@@ -64,4 +69,5 @@ MovieView.propTypes = {
     ).isRequired,
     findSimilarMovies: PropTypes.func.isRequired,
     onFavorite: PropTypes.func.isRequired,
+    isFavorite: PropTypes.func.isRequired,
 };
