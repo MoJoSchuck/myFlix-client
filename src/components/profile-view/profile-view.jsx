@@ -1,48 +1,52 @@
-// src/components/profile-view/profile-view.jsx
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import { Button, Form, Row, Col } from "react-bootstrap";
-import { MovieCard } from "../movie-card/movie-card";
+import { Button, Form, Row, Col, Alert, Modal } from "react-bootstrap";
 
-export const ProfileView = ({ user, movies, onLoggedOut, onUserUpdate, token }) => {
+export const ProfileView = ({ user, onLoggedOut, onUserUpdate, onUserDelete, token }) => {
     const [username, setUsername] = useState(user.Username);
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState(user.Email);
-    const [birthday, setBirthday] = useState(user.Birthday);
+    const [birthday, setBirthday] = useState("");
+    const [updateMessage, setUpdateMessage] = useState("");
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
 
-    const favoriteMovies = movies.filter((movie) => user.FavoriteMovies.includes(movie._id));
+    useEffect(() => {
+        if (user.Birthday) {
+            setBirthday(new Date(user.Birthday).toISOString().split('T')[0]);
+        }
+    }, [user.Birthday]);
 
-    const handleUpdate = () => {
+    const handleUpdate = async () => {
         const updatedUser = {
             Username: username,
-            Password: password,
             Email: email,
             Birthday: birthday,
+            FavoriteMovies: user.FavoriteMovies || []
         };
-        onUserUpdate(updatedUser);
+        if (password) {
+            updatedUser.Password = password;
+        }
+
+        const success = await onUserUpdate(updatedUser);
+        if (success) {
+            setUpdateMessage('User updated successfully!');
+            setTimeout(() => setUpdateMessage(''), 3000);
+        }
     };
 
-    const removeFavorite = async (movieId) => {
-        try {
-            const response = await fetch(`https://afternoon-sands-47cb04422b71.herokuapp.com/users/${user.Username}/movies/${movieId}`, {
-                method: "DELETE",
-                headers: { Authorization: `Bearer ${token}` }
-            });
-            if (!response.ok) {
-                throw new Error("Failed to remove favorite movie");
-            }
-            const updatedUser = { ...user, FavoriteMovies: user.FavoriteMovies.filter(id => id !== movieId) };
-            setUser(updatedUser);
-            localStorage.setItem("user", JSON.stringify(updatedUser));
-        } catch (error) {
-            console.error("Error removing favorite movie:", error.message);
+    const handleDelete = async () => {
+        const success = await onUserDelete(user.Username);
+        if (success) {
+            onLoggedOut();
         }
     };
 
     return (
         <Row>
             <Col md={6}>
-                <h2>User Profile</h2>
+                <h2 className="profile-title">User Profile</h2>
+                <hr className="profile-divider" />
+                {updateMessage && <Alert variant="success">{updateMessage}</Alert>}
                 <Form>
                     <Form.Group controlId="formUsername">
                         <Form.Label>Username</Form.Label>
@@ -76,23 +80,31 @@ export const ProfileView = ({ user, movies, onLoggedOut, onUserUpdate, token }) 
                             onChange={(e) => setBirthday(e.target.value)}
                         />
                     </Form.Group>
-                    <Button variant="primary" onClick={handleUpdate}>
+                    <br></br>
+                    <Button variant="primary" onClick={handleUpdate} className="me-2">
                         Update
                     </Button>
-                    <Button variant="secondary" onClick={onLoggedOut}>
-                        Logout
+                    <Button variant="outline-danger" onClick={() => setShowDeleteModal(true)}>
+                        Delete Account
                     </Button>
                 </Form>
-            </Col>
-            <Col md={6}>
-                <h3>Favorite Movies</h3>
-                <Row>
-                    {favoriteMovies.map((movie) => (
-                        <Col xs={12} sm={6} md={4} lg={3} key={movie._id}>
-                            <MovieCard movie={movie} onFavorite={() => removeFavorite(movie._id)} />
-                        </Col>
-                    ))}
-                </Row>
+
+                <Modal show={showDeleteModal} onHide={() => setShowDeleteModal(false)} className="custom-modal">
+                    <Modal.Header closeButton>
+                        <Modal.Title>Deleting Confirmation</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        Are you sure you want to delete this account?
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="light" onClick={() => setShowDeleteModal(false)}>
+                            Close
+                        </Button>
+                        <Button variant="outline-danger" onClick={handleDelete}>
+                            Delete
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
             </Col>
         </Row>
     );
@@ -103,22 +115,10 @@ ProfileView.propTypes = {
         Username: PropTypes.string.isRequired,
         Email: PropTypes.string.isRequired,
         Birthday: PropTypes.string,
-        FavoriteMovies: PropTypes.arrayOf(PropTypes.string).isRequired,
+        FavoriteMovies: PropTypes.arrayOf(PropTypes.string).isRequired
     }).isRequired,
-    movies: PropTypes.arrayOf(
-        PropTypes.shape({
-            _id: PropTypes.string.isRequired,
-            Title: PropTypes.string.isRequired,
-            ImagePath: PropTypes.string.isRequired,
-            Director: PropTypes.shape({
-                Name: PropTypes.string.isRequired,
-            }).isRequired,
-            Genre: PropTypes.shape({
-                Name: PropTypes.string.isRequired,
-            }).isRequired,
-        })
-    ).isRequired,
     onLoggedOut: PropTypes.func.isRequired,
     onUserUpdate: PropTypes.func.isRequired,
-    token: PropTypes.string
+    onUserDelete: PropTypes.func.isRequired,
+    token: PropTypes.string.isRequired,
 };
