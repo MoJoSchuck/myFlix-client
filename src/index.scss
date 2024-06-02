@@ -29,7 +29,7 @@ img {
     width: 100%;
     height: auto;
     object-fit: cover;
-    aspect-ratio: 16 / 9
+    aspect-ratio: 16 / 9;
 }
 
 .movie-card-container img {
@@ -41,7 +41,7 @@ img {
     width: 100%;
     height: auto;
     max-height: 500px;
-    padding: 20 0px;
+    padding: 20px 0;
 }
 
 .login-view,
@@ -50,3 +50,62 @@ img {
         color: white;
     }
 }
+
+// Add custom styles for the Navbar
+.navbar {
+    width: 100%;
+    z-index: 1000;
+}
+
+.navbar-nav .nav-link {
+    color: black;
+}
+
+// Custom styles for FavoritesView
+.favorites-view {
+    .favorites-title {
+        margin-bottom: 1rem; // Abstand zwischen Überschrift und Linie
+        // text-align: center;
+    }
+
+    .favorites-divider {
+        border: 0;
+        height: 1px;
+        background: white;
+        margin: 0 auto 2rem auto; // Abstand zwischen Linie und Filmen
+        width: 100%; // Oder passe die Breite nach Bedarf an
+    }
+}
+
+// Custom styles for ProfileView
+.profile-view {
+    .profile-title {
+        margin-bottom: 1rem; // Abstand zwischen Überschrift und Linie
+        text-align: center;
+    }
+
+    .profile-divider {
+        border: 0;
+        height: 1px;
+        background: white;
+        margin: 0 auto 2rem auto; // Abstand zwischen Linie und Inhalt
+        width: 50%; // Oder passe die Breite nach Bedarf an
+    }
+}
+
+// Custom styles for the Modal
+.custom-modal .modal-content {
+    background-color: $dark-color;
+    color: white;
+}
+
+.custom-modal .modal-header,
+.custom-modal .modal-footer {
+    border: none;
+}
+
+.custom-modal .close {
+    color: white;
+}
+
+  
