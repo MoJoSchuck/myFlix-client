@@ -20,11 +20,11 @@ export const MovieView = ({ movies, findSimilarMovies, onFavorite, isFavorite })
             <Card className="movie-view">
                 <Card.Img variant="top" src={movie.ImagePath} alt={movie.Title} />
                 <Card.Body>
-                    <Card.Title>{movie.Title}</Card.Title>
+                    <Card.Title><h2>{movie.Title}</h2></Card.Title>
                     <Card.Text>
                         <strong>Year:</strong> {movie.ReleaseYear}<br />
                         <strong>Genre:</strong> {movie.Genre.Name}<br />
-                        <strong>Director:</strong> {movie.Director.Name}<br />
+                        <strong>Director:</strong> {movie.Director.Name}<br /><br></br>
                         <strong>Description:</strong> {movie.Description}
                     </Card.Text>
                     <Link to={`/`}>
