@@ -14,7 +14,6 @@ export const MovieCarousel = ({ movies }) => {
           />
           <Carousel.Caption>
             <h3>{movie.Title}</h3>
-            <p>{movie.Description}</p>
           </Carousel.Caption>
         </Carousel.Item>
       ))}
@@ -23,12 +22,12 @@ export const MovieCarousel = ({ movies }) => {
 };
 
 MovieCarousel.propTypes = {
-    movies: PropTypes.arrayOf(
-      PropTypes.shape({
-        _id: PropTypes.string.isRequired,
-        Title: PropTypes.string.isRequired,
-        ImagePath: PropTypes.string.isRequired,
-        Description: PropTypes.string.isRequired,
-      })
-    ).isRequired,
-  };
+  movies: PropTypes.arrayOf(
+    PropTypes.shape({
+      _id: PropTypes.string.isRequired,
+      Title: PropTypes.string.isRequired,
+      ImagePath: PropTypes.string.isRequired,
+      Description: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+};
