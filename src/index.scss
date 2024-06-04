@@ -1,5 +1,5 @@
 $dark-color: rgb(31, 41, 51);
-$lighter-color: rgb(43, 57, 72); // Eine hellere Version
+$lighter-color: rgb(43, 57, 72);
 
 body {
     background-color: $lighter-color;
@@ -34,7 +34,7 @@ img {
 
 .movie-card-container img {
     height: 100%;
-    object-fit: cover; // oder object-fit: contain;
+    object-fit: cover; 
 }
 
 .carousel-item img {
@@ -64,7 +64,7 @@ img {
 // Custom styles for FavoritesView
 .favorites-view {
     .favorites-title {
-        margin-bottom: 1rem; // Abstand zwischen Überschrift und Linie
+        margin-bottom: 1rem; 
         // text-align: center;
     }
 
@@ -72,15 +72,15 @@ img {
         border: 0;
         height: 1px;
         background: white;
-        margin: 0 auto 2rem auto; // Abstand zwischen Linie und Filmen
-        width: 100%; // Oder passe die Breite nach Bedarf an
+        margin: 0 auto 2rem auto; 
+        width: 100%; 
     }
 }
 
 // Custom styles for ProfileView
 .profile-view {
     .profile-title {
-        margin-bottom: 1rem; // Abstand zwischen Überschrift und Linie
+        margin-bottom: 1rem; 
         text-align: center;
     }
 
@@ -88,8 +88,8 @@ img {
         border: 0;
         height: 1px;
         background: white;
-        margin: 0 auto 2rem auto; // Abstand zwischen Linie und Inhalt
-        width: 50%; // Oder passe die Breite nach Bedarf an
+        margin: 0 auto 2rem auto; 
+        width: 50%; 
     }
 }
 
