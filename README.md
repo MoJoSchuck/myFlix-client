@@ -35,16 +35,6 @@ Client-side development has become increasingly prominent with the advent of mod
   - Allows users to remove a movie from their list of favorites
   - Allows existing users to deregister
 
-### Optional Features
-- **Actors view**
-  - Allows users to view information about different actors
-- **Genre view**
-  - Returns data about a genre, with a name and description
-  - Displays example movies
-- **Director view**
-  - Returns data about a director (name, bio, birth year, death year)
-  - Displays example movies from the director
-
 ## Installation and Usage
 
 1. Clone the repository: `git clone <repository-url>`
