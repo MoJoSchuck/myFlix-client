@@ -12,9 +12,9 @@ Client-side development has become increasingly prominent with the advent of mod
 - ES2015+
 - Bootstrap
 - Parcel
+  
 ## Features
 
-### Core Features
 - **Main view**
   - Returns ALL movies to the user (each movie item with an image, title, and description)
   - Filtering the list of movies with a “search” feature
