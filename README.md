@@ -41,7 +41,7 @@ Client-side development has become increasingly prominent with the advent of mod
 
 ## Installation and Usage
 
-1. Clone the repository: `git clone <[repository-url](https://github.com/MoJoSchuck/myFlix-client.git)>`
+1. Clone the repository: `git clone` [repository-url](https://github.com/MoJoSchuck/myFlix-client.git)
 2. Navigate to the project directory: `cd myflix-react`
 3. Install dependencies: `npm install`
 4. Start the development server: `npm start`
