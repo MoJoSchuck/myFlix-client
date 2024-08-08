@@ -41,11 +41,23 @@ Client-side development has become increasingly prominent with the advent of mod
 
 ## Installation and Usage
 
-1. Clone the repository: `git clone <[repository-url](https://github.com/MoJoSchuck/myFlix-client.git)>`
-2. Navigate to the project directory: `cd myflix-react`
+1. Clone the repository: `git clone https://github.com/MoJoSchuck/myFlix-client.git`
+2. Navigate to the project directory: `cd myFlix-client`
 3. Install dependencies: `npm install`
 4. Start the development server: `npm start`
 The server runs by default on port 8080.
+
+## Screenshots
+
+### Main View
+<img src="https://github.com/user-attachments/assets/acc160e4-f6aa-4910-970e-7620e50e4ce9" alt="Main View" width="600">
+
+### Single Movie View
+<img src="https://github.com/user-attachments/assets/ba9c7637-9cd1-4660-813f-d5677c644099" alt="Single Movie View" width="600">
+
+## Live Demo
+
+[myFlix](https://myflix777.netlify.app)
 
 ## Contributing
 
@@ -54,9 +66,3 @@ Please read the contribution guidelines before contributing.
 ## License
 
 This project is licensed under the MIT License.
-
-## Project URL
-
-[myFlix](https://myflix777.netlify.app)
-
-
