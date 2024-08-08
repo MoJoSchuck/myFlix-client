@@ -49,11 +49,12 @@ The server runs by default on port 8080.
 
 ## Screenshots
 
-### Main View
-<img src="https://github.com/user-attachments/assets/acc160e4-f6aa-4910-970e-7620e50e4ce9" alt="Main View" width="600">
+### Web View
+<img src="https://github.com/user-attachments/assets/acc160e4-f6aa-4910-970e-7620e50e4ce9" alt="Web View" width="600">
 
-### Single Movie View
-<img src="https://github.com/user-attachments/assets/ba9c7637-9cd1-4660-813f-d5677c644099" alt="Single Movie View" width="600">
+### Mobile View
+<img src="https://github.com/user-attachments/assets/26931019-fbe6-4644-97a5-7179d71d9dd0" alt="Additional Mobile View" width="297">
+
 
 ## Live Demo
 
