@@ -4,12 +4,11 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router-dom";
 import { API_BASE_URL } from "../../config";
-import { apiFetch } from "../../utils/api";
 
 export const LoginView = ({ onLoggedIn }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false);
+
   const navigate = useNavigate(); // Initialize the useNavigate hook
 
   const handleSubmit = (event) => {
@@ -21,18 +20,13 @@ export const LoginView = ({ onLoggedIn }) => {
       Password: password,
     };
 
-    setLoading(true);
-    apiFetch(
-      `/login`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
+    fetch(`${API_BASE_URL}/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
       },
-      { retries: 2, backoffMs: 1500 }
-    )
+      body: JSON.stringify(data),
+    })
       .then((response) => {
         if (!response.ok) {
           throw new Error("Login failed");
@@ -53,8 +47,7 @@ export const LoginView = ({ onLoggedIn }) => {
       .catch((e) => {
         console.error("Error during login:", e);
         alert("Something went wrong");
-      })
-      .finally(() => setLoading(false));
+      });
   };
 
   return (
@@ -80,8 +73,8 @@ export const LoginView = ({ onLoggedIn }) => {
         />
       </Form.Group>
       <br></br>
-      <Button variant="primary" type="submit" disabled={loading}>
-        {loading ? "Connecting…" : "Login"}
+      <Button variant="primary" type="submit">
+        Login
       </Button>
     </Form>
   );
