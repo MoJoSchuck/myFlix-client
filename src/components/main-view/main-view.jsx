@@ -15,6 +15,7 @@ import { MovieCarousel } from "../carousel/carousel";
 import { ProfileView } from "../profile-view/profile-view";
 import { FavoritesView } from "../favorites-view/favorites-view";
 import { API_BASE_URL } from "../../config";
+import { apiFetch } from "../../utils/api";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { Navbar, Nav, Button, Container, Form } from "react-bootstrap";
@@ -47,9 +48,13 @@ export const MainView = () => {
 
   const fetchMovies = async () => {
     try {
-      const response = await fetch(`${API_BASE_URL}/movies`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const response = await apiFetch(
+        `/movies`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        },
+        { retries: 2, backoffMs: 1500 }
+      );
       if (!response.ok) {
         throw new Error("Failed to fetch movies");
       }
